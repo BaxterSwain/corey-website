@@ -4,10 +4,12 @@ import HighlightsSection from "@/components/HighlightsSection";
 import GallerySection from "@/components/GallerySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import { unstable_noStore as noStore } from "next/cache";
 
 import { getContent, getStats, getHighlights, getGallery } from "@/lib/db";
 
 export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 
 export default async function Home() {
   const heroContent = await getContent("hero");
