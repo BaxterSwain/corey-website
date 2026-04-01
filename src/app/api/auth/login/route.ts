@@ -7,19 +7,20 @@ export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
 
-    console.log("Login attempt for:", email);
-
     const user = await getUserByEmail(email);
 
     if (!user) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
-    console.log("User found, columns:", Object.keys(user));
-    console.log("passwordHash type:", typeof user.passwordHash);
-    console.log("password type:", typeof password);
+    // Handle both camelCase and lowercase column names from Supabase
+    const hash = user.passwordHash || user.passwordhash;
 
-    const valid = await bcrypt.compare(password, user.passwordHash);
+    if (!hash) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    }
+
+    const valid = await bcrypt.compare(password, hash);
 
     if (!valid) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
@@ -38,8 +39,7 @@ export async function POST(req: Request) {
 
     return response;
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    console.error("Login error:", message);
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("Login error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

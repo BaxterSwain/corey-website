@@ -7,9 +7,8 @@ function getSupabase(): SupabaseClient {
   if (!_supabase) {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    console.log("Supabase init - URL defined:", !!url, "Key defined:", !!key);
     if (!url || !key) {
-      throw new Error(`Missing Supabase env vars: URL=${!!url}, KEY=${!!key}`);
+      throw new Error('Missing Supabase env vars');
     }
     _supabase = createClient(url, key);
   }
