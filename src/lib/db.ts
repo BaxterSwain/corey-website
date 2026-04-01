@@ -85,7 +85,8 @@ export async function getStats() {
     .order('order', { ascending: true });
 
   if (error) throw error;
-  return data;
+  // value is stored as text in Supabase — parse to number for frontend
+  return (data || []).map((s: any) => ({ ...s, value: Number(s.value) || 0 }));
 }
 
 export async function createStat(stat: any) {
