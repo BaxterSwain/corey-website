@@ -1,11 +1,17 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import bcrypt from 'bcryptjs';
 
-// Create Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+// Lazy Supabase client — avoids crashing at module load when env vars are missing
+let _supabase: SupabaseClient | null = null;
+function getSupabase(): SupabaseClient {
+  if (!_supabase) {
+    _supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+  }
+  return _supabase;
+}
 
 // =====================
 // AUTH
@@ -14,7 +20,7 @@ const supabase = createClient(
 export async function createUser(email: string, password: string) {
   const passwordHash = await bcrypt.hash(password, 10);
 
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('users')
     .insert({ email, passwordHash })
     .select()
@@ -25,7 +31,7 @@ export async function createUser(email: string, password: string) {
 }
 
 export async function getUserByEmail(email: string) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('users')
     .select('*')
     .eq('email', email)
@@ -40,7 +46,7 @@ export async function getUserByEmail(email: string) {
 // =====================
 
 export async function getSiteContent(section: string) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('site_content')
     .select('key, value')
     .eq('section', section);
@@ -56,7 +62,7 @@ export async function getSiteContent(section: string) {
 }
 
 export async function upsertSiteContent(section: string, key: string, value: string) {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('site_content')
     .upsert(
       { section, key, value },
@@ -71,7 +77,7 @@ export async function upsertSiteContent(section: string, key: string, value: str
 // =====================
 
 export async function getStats() {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('stats')
     .select('*')
     .order('order', { ascending: true });
@@ -81,7 +87,7 @@ export async function getStats() {
 }
 
 export async function createStat(stat: any) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('stats')
     .insert(stat)
     .select()
@@ -92,7 +98,7 @@ export async function createStat(stat: any) {
 }
 
 export async function updateStat(id: number, updates: any) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('stats')
     .update(updates)
     .eq('id', id)
@@ -104,7 +110,7 @@ export async function updateStat(id: number, updates: any) {
 }
 
 export async function deleteStat(id: number) {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('stats')
     .delete()
     .eq('id', id);
@@ -117,7 +123,7 @@ export async function deleteStat(id: number) {
 // =====================
 
 export async function getHighlights() {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('highlights')
     .select('*')
     .order('order', { ascending: true });
@@ -127,7 +133,7 @@ export async function getHighlights() {
 }
 
 export async function getHighlight(id: number) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('highlights')
     .select('*')
     .eq('id', id)
@@ -138,7 +144,7 @@ export async function getHighlight(id: number) {
 }
 
 export async function createHighlight(item: any) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('highlights')
     .insert(item)
     .select()
@@ -149,7 +155,7 @@ export async function createHighlight(item: any) {
 }
 
 export async function updateHighlight(id: number, updates: any) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('highlights')
     .update(updates)
     .eq('id', id)
@@ -161,7 +167,7 @@ export async function updateHighlight(id: number, updates: any) {
 }
 
 export async function deleteHighlight(id: number) {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('highlights')
     .delete()
     .eq('id', id);
@@ -174,7 +180,7 @@ export async function deleteHighlight(id: number) {
 // =====================
 
 export async function getGallery() {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('gallery')
     .select('*')
     .order('order', { ascending: true });
@@ -184,7 +190,7 @@ export async function getGallery() {
 }
 
 export async function createGalleryItem(item: any) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('gallery')
     .insert(item)
     .select()
@@ -195,7 +201,7 @@ export async function createGalleryItem(item: any) {
 }
 
 export async function updateGalleryItem(id: number, updates: any) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('gallery')
     .update(updates)
     .eq('id', id)
@@ -207,7 +213,7 @@ export async function updateGalleryItem(id: number, updates: any) {
 }
 
 export async function deleteGalleryItem(id: number) {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('gallery')
     .delete()
     .eq('id', id);
@@ -220,7 +226,7 @@ export async function deleteGalleryItem(id: number) {
 // =====================
 
 export async function createContact(contact: any) {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('contacts')
     .insert(contact)
     .select()
@@ -231,7 +237,7 @@ export async function createContact(contact: any) {
 }
 
 export async function getContacts() {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('contacts')
     .select('*')
     .order('createdAt', { ascending: false });
@@ -241,7 +247,7 @@ export async function getContacts() {
 }
 
 export async function getUnreadContactsCount() {
-  const { count, error } = await supabase
+  const { count, error } = await getSupabase()
     .from('contacts')
     .select('*', { count: 'exact', head: true })
     .eq('read', false);
