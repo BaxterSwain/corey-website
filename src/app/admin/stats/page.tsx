@@ -40,7 +40,7 @@ export default function AdminStatsPage() {
       await fetch('/api/stats', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, value: Number(data.value), suffix: data.suffix, label: data.label, order: Number(data.order) }),
+        body: JSON.stringify({ id, value: String(data.value), suffix: data.suffix, label: data.label, order: Number(data.order) }),
       });
       const next = { ...editing }; delete next[id]; setEditing(next);
       await fetchStats();
@@ -59,7 +59,7 @@ export default function AdminStatsPage() {
   const handleAdd = async () => {
     if (!newStat.label) return;
     try {
-      await fetch('/api/stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...newStat, value: Number(newStat.value), order: Number(newStat.order) }) });
+      await fetch('/api/stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...newStat, value: String(newStat.value), order: Number(newStat.order) }) });
       setNewStat(emptyForm); await fetchStats(); flash('Added');
     } catch { flash('Failed'); }
   };
