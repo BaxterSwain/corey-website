@@ -7,11 +7,17 @@ export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
 
+    console.log("Login attempt for:", email);
+
     const user = await getUserByEmail(email);
 
     if (!user) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
+
+    console.log("User found, columns:", Object.keys(user));
+    console.log("passwordHash type:", typeof user.passwordHash);
+    console.log("password type:", typeof password);
 
     const valid = await bcrypt.compare(password, user.passwordHash);
 
