@@ -75,7 +75,7 @@ function VideoCard({
             }
           }}
         >
-          <div className="w-14 h-14 border border-white/15 flex items-center justify-center group-hover:bg-[#d4a054] group-hover:border-[#d4a054] transition-all duration-400">
+          <div className="w-14 h-14 border border-white/15 flex items-center justify-center group-hover:bg-[#2a6dc7] group-hover:border-[#2a6dc7] transition-all duration-400">
             <Play
               size={18}
               className="text-white fill-white ml-0.5"
@@ -87,7 +87,7 @@ function VideoCard({
         {/* Badge */}
         {video.badge && (
           <div className="absolute top-3 left-3">
-            <span className="bg-[#d4a054] text-[#030303] text-[8px] font-bold tracking-[0.2em] uppercase px-2.5 py-1">
+            <span className="bg-[#2a6dc7] text-[#030303] text-[8px] font-bold tracking-[0.2em] uppercase px-2.5 py-1">
               {video.badge}
             </span>
           </div>
@@ -102,7 +102,7 @@ function VideoCard({
       {/* TEXT (click opens modal) */}
       <h3
         onClick={onOpen}
-        className="cursor-pointer text-white font-bold text-sm leading-tight mb-1.5 group-hover:text-[#d4a054] transition-colors duration-300 line-clamp-2"
+        className="cursor-pointer text-white font-bold text-sm leading-tight mb-1.5 group-hover:text-[#2a6dc7] transition-colors duration-300 line-clamp-2"
       >
         {video.title}
       </h3>
@@ -150,7 +150,7 @@ export default function HighlightsSection({
           className="mb-20"
         >
           <h2 className="text-5xl font-black text-white">
-            RACE <span className="text-[#d4a054]">FOOTAGE</span>
+            RACE <span className="text-[#2a6dc7]">FOOTAGE</span>
           </h2>
         </motion.div>
 

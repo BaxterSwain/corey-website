@@ -58,7 +58,7 @@ export default function ContactSection() {
   };
 
   const inputClasses =
-    "w-full bg-white/[0.02] border border-white/[0.06] focus:border-[#d4a054]/40 text-white placeholder-white/10 px-5 py-3.5 text-sm outline-none transition-all duration-300 focus:bg-white/[0.03]";
+    "w-full bg-white/[0.02] border border-white/[0.06] focus:border-[#2a6dc7]/40 text-white placeholder-white/10 px-5 py-3.5 text-sm outline-none transition-all duration-300 focus:bg-white/[0.03]";
 
   return (
     <section
@@ -67,10 +67,10 @@ export default function ContactSection() {
       className="relative py-32 lg:py-44 bg-[#050505] overflow-hidden"
     >
       {/* Top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4a054]/20 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2a6dc7]/20 to-transparent" />
 
       {/* Decorative corner */}
-      <div className="absolute bottom-0 left-0 w-32 h-32 border-b border-l border-[#d4a054]/10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 border-b border-l border-[#2a6dc7]/10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
@@ -81,11 +81,11 @@ export default function ContactSection() {
           className="text-center mb-24"
         >
           <div className="flex items-center justify-center gap-4 mb-8">
-            <div className="w-8 h-px bg-[#d4a054]/60" />
-            <span className="text-[#d4a054]/60 font-medium text-[10px] tracking-[0.35em] uppercase">
+            <div className="w-8 h-px bg-[#2a6dc7]/60" />
+            <span className="text-[#2a6dc7]/60 font-medium text-[10px] tracking-[0.35em] uppercase">
               Contact
             </span>
-            <div className="w-8 h-px bg-[#d4a054]/60" />
+            <div className="w-8 h-px bg-[#2a6dc7]/60" />
           </div>
           <h2 className="text-6xl sm:text-7xl lg:text-9xl font-black leading-[0.85] tracking-[-0.03em]">
             <span className="text-white">GET IN</span>
@@ -112,17 +112,17 @@ export default function ContactSection() {
               href="https://www.instagram.com/coreymcculloughmotorsport/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-start gap-5 p-6 bg-white/[0.015] border border-white/[0.04] hover:border-[#d4a054]/20 hover:bg-[#d4a054]/[0.02] transition-all duration-400"
+              className="group flex items-start gap-5 p-6 bg-white/[0.015] border border-white/[0.04] hover:border-[#2a6dc7]/20 hover:bg-[#2a6dc7]/[0.02] transition-all duration-400"
             >
-              <div className="flex-shrink-0 w-11 h-11 border border-[#d4a054]/20 flex items-center justify-center group-hover:border-[#d4a054]/40 transition-colors duration-300">
-                <InstagramIcon size={18} color="#d4a054" />
+              <div className="flex-shrink-0 w-11 h-11 border border-[#2a6dc7]/20 flex items-center justify-center group-hover:border-[#2a6dc7]/40 transition-colors duration-300">
+                <InstagramIcon size={18} color="#2a6dc7" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
                   <span className="text-white font-bold text-sm">Instagram</span>
-                  <ExternalLink size={12} className="text-white/10 group-hover:text-[#d4a054]/50 transition-colors duration-300" />
+                  <ExternalLink size={12} className="text-white/10 group-hover:text-[#2a6dc7]/50 transition-colors duration-300" />
                 </div>
-                <div className="text-[#d4a054]/70 text-xs mt-1">@coreymcculloughmotorsport</div>
+                <div className="text-[#2a6dc7]/70 text-xs mt-1">@coreymcculloughmotorsport</div>
                 <div className="text-white/20 text-xs mt-1.5">Race updates, behind the scenes</div>
               </div>
             </a>
@@ -130,17 +130,17 @@ export default function ContactSection() {
             {/* Email */}
             <button
               onClick={() => window.location.href = 'mailto:contact@coreymccullough.com'}
-              className="w-full group flex items-start gap-5 p-6 bg-white/[0.015] border border-white/[0.04] hover:border-[#d4a054]/20 hover:bg-[#d4a054]/[0.02] transition-all duration-400 text-left cursor-pointer"
+              className="w-full group flex items-start gap-5 p-6 bg-white/[0.015] border border-white/[0.04] hover:border-[#2a6dc7]/20 hover:bg-[#2a6dc7]/[0.02] transition-all duration-400 text-left cursor-pointer"
             >
-              <div className="flex-shrink-0 w-11 h-11 border border-[#d4a054]/20 flex items-center justify-center group-hover:border-[#d4a054]/40 transition-colors duration-300">
-                <Mail size={18} className="text-[#d4a054]" />
+              <div className="flex-shrink-0 w-11 h-11 border border-[#2a6dc7]/20 flex items-center justify-center group-hover:border-[#2a6dc7]/40 transition-colors duration-300">
+                <Mail size={18} className="text-[#2a6dc7]" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
                   <span className="text-white font-bold text-sm">Email</span>
-                  <ExternalLink size={12} className="text-white/10 group-hover:text-[#d4a054]/50 transition-colors duration-300" />
+                  <ExternalLink size={12} className="text-white/10 group-hover:text-[#2a6dc7]/50 transition-colors duration-300" />
                 </div>
-                <div className="text-[#d4a054]/70 text-xs mt-1">contact@coreymccullough.com</div>
+                <div className="text-[#2a6dc7]/70 text-xs mt-1">contact@coreymccullough.com</div>
                 <div className="text-white/20 text-xs mt-1.5">Business & management enquiries</div>
               </div>
             </button>
@@ -155,13 +155,13 @@ export default function ContactSection() {
             <form ref={formRef} className="space-y-5" onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="text-[#d4a054]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
+                  <label className="text-[#2a6dc7]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
                     First Name
                   </label>
                   <input type="text" name="firstName" required placeholder="John" className={inputClasses} />
                 </div>
                 <div>
-                  <label className="text-[#d4a054]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
+                  <label className="text-[#2a6dc7]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
                     Last Name
                   </label>
                   <input type="text" name="lastName" required placeholder="Smith" className={inputClasses} />
@@ -169,14 +169,14 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label className="text-[#d4a054]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
+                <label className="text-[#2a6dc7]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
                   Email
                 </label>
                 <input type="email" name="email" required placeholder="john@company.com" className={inputClasses} />
               </div>
 
               <div>
-                <label className="text-[#d4a054]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
+                <label className="text-[#2a6dc7]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
                   Enquiry Type
                 </label>
                 <select name="enquiryType" className={`${inputClasses} appearance-none cursor-pointer`}>
@@ -188,7 +188,7 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label className="text-[#d4a054]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
+                <label className="text-[#2a6dc7]/40 text-[9px] tracking-[0.25em] uppercase font-medium block mb-2.5">
                   Message
                 </label>
                 <textarea
@@ -201,7 +201,7 @@ export default function ContactSection() {
               </div>
 
               {submitStatus === "success" && (
-                <div className="text-[#d4a054] text-xs font-medium py-2">
+                <div className="text-[#2a6dc7] text-xs font-medium py-2">
                   Message sent. Corey will be in touch soon.
                 </div>
               )}
@@ -214,7 +214,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-[#d4a054] hover:bg-[#e4b56a] text-[#030303] font-bold text-[11px] tracking-[0.2em] uppercase py-4 transition-all duration-400 hover:shadow-[0_0_30px_rgba(212,160,84,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#2a6dc7] hover:bg-[#3a7dd7] text-[#030303] font-bold text-[11px] tracking-[0.2em] uppercase py-4 transition-all duration-400 hover:shadow-[0_0_30px_rgba(212,160,84,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {submitting ? "Sending..." : "Send Message"}
               </button>

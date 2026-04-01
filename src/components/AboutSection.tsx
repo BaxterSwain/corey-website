@@ -29,12 +29,12 @@ export default function AboutSection({ bio, tags, traits, instagramUrl }: AboutS
         className="absolute top-0 right-0 w-1/2 h-full pointer-events-none opacity-[0.025]"
         style={{
           background:
-            "radial-gradient(ellipse at 100% 30%, #d4a054 0%, transparent 60%)",
+            "radial-gradient(ellipse at 100% 30%, #2a6dc7 0%, transparent 60%)",
         }}
       />
 
       {/* Decorative corner lines */}
-      <div className="absolute top-0 right-0 w-32 h-32 border-t border-r border-[#d4a054]/10 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-32 h-32 border-t border-r border-[#2a6dc7]/10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-20 lg:gap-28 items-start">
@@ -46,8 +46,8 @@ export default function AboutSection({ bio, tags, traits, instagramUrl }: AboutS
           >
             {/* Section label */}
             <div className="flex items-center gap-4 mb-10">
-              <div className="w-8 h-px bg-[#d4a054]/60" />
-              <span className="text-[#d4a054]/60 font-medium text-[10px] tracking-[0.35em] uppercase">
+              <div className="w-8 h-px bg-[#2a6dc7]/60" />
+              <span className="text-[#2a6dc7]/60 font-medium text-[10px] tracking-[0.35em] uppercase">
                 About
               </span>
             </div>
@@ -72,7 +72,7 @@ export default function AboutSection({ bio, tags, traits, instagramUrl }: AboutS
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
-                  className="border border-[#d4a054]/15 text-[#d4a054]/50 text-[9px] font-medium tracking-[0.2em] uppercase px-4 py-2 hover:border-[#d4a054]/40 hover:text-[#d4a054] transition-all duration-300"
+                  className="border border-[#2a6dc7]/15 text-[#2a6dc7]/50 text-[9px] font-medium tracking-[0.2em] uppercase px-4 py-2 hover:border-[#2a6dc7]/40 hover:text-[#2a6dc7] transition-all duration-300"
                 >
                   {tag}
                 </motion.span>
@@ -84,9 +84,9 @@ export default function AboutSection({ bio, tags, traits, instagramUrl }: AboutS
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-12 inline-flex items-center gap-3 text-[#d4a054] hover:text-[#e4b56a] font-medium text-[11px] tracking-[0.2em] uppercase transition-colors group"
+              className="mt-12 inline-flex items-center gap-3 text-[#2a6dc7] hover:text-[#3a7dd7] font-medium text-[11px] tracking-[0.2em] uppercase transition-colors group"
             >
-              <span className="w-6 h-px bg-[#d4a054]/40 group-hover:w-10 transition-all duration-300" />
+              <span className="w-6 h-px bg-[#2a6dc7]/40 group-hover:w-10 transition-all duration-300" />
               Follow the journey
               <span className="group-hover:translate-x-1 transition-transform duration-300 text-sm">
                 &rarr;
@@ -108,10 +108,10 @@ export default function AboutSection({ bio, tags, traits, instagramUrl }: AboutS
                     delay: 0.2 + i * 0.1,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className="relative bg-white/[0.015] border border-white/[0.04] p-7 group transition-all duration-400 hover:bg-[#d4a054]/[0.03] hover:border-[#d4a054]/20 card-hover"
+                  className="relative bg-white/[0.015] border border-white/[0.04] p-7 group transition-all duration-400 hover:bg-[#2a6dc7]/[0.03] hover:border-[#2a6dc7]/20 card-hover"
                 >
-                  <div className="mb-5 w-10 h-10 border border-[#d4a054]/20 flex items-center justify-center group-hover:border-[#d4a054]/40 transition-colors duration-300">
-                    <Icon size={16} className="text-[#d4a054]/70" strokeWidth={1.5} />
+                  <div className="mb-5 w-10 h-10 border border-[#2a6dc7]/20 flex items-center justify-center group-hover:border-[#2a6dc7]/40 transition-colors duration-300">
+                    <Icon size={16} className="text-[#2a6dc7]/70" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-white font-bold text-sm mb-2.5 tracking-wide">
                     {trait.title}

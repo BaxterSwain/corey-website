@@ -16,23 +16,23 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#030303] border-t border-[#d4a054]/8">
+    <footer className="relative bg-[#030303] border-t border-[#2a6dc7]/8">
       {/* Gold accent line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4a054]/15 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2a6dc7]/15 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-14">
           {/* Brand */}
           <div className="flex flex-col gap-5 max-w-xs">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 border border-[#d4a054]/40 flex items-center justify-center">
-                <span className="text-[#d4a054] font-black text-[11px]">CM</span>
+              <div className="w-10 h-10 border border-[#2a6dc7]/40 flex items-center justify-center">
+                <span className="text-[#2a6dc7] font-black text-[11px]">CM</span>
               </div>
               <div>
                 <div className="text-white font-black text-[13px] tracking-[0.2em] leading-none">
                   COREY McCULLOUGH
                 </div>
-                <div className="text-[#d4a054]/30 text-[9px] tracking-[0.35em] leading-none mt-1">
+                <div className="text-[#2a6dc7]/30 text-[9px] tracking-[0.35em] leading-none mt-1">
                   MOTORSPORT
                 </div>
               </div>
@@ -44,7 +44,7 @@ export default function Footer() {
               href="https://www.instagram.com/coreymcculloughmotorsport/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2.5 text-white/20 hover:text-[#d4a054] text-xs transition-colors duration-300"
+              className="flex items-center gap-2.5 text-white/20 hover:text-[#2a6dc7] text-xs transition-colors duration-300"
             >
               <InstagramIcon size={14} />
               @coreymcculloughmotorsport
@@ -54,7 +54,7 @@ export default function Footer() {
           {/* Nav columns */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 sm:gap-16">
             <div>
-              <h4 className="text-[#d4a054]/25 text-[9px] tracking-[0.35em] uppercase font-medium mb-5">
+              <h4 className="text-[#2a6dc7]/25 text-[9px] tracking-[0.35em] uppercase font-medium mb-5">
                 Navigate
               </h4>
               <ul className="space-y-3">
@@ -68,7 +68,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <button
                       onClick={() => scrollTo(link.href)}
-                      className="text-white/20 hover:text-[#d4a054] text-xs transition-colors duration-300 cursor-pointer"
+                      className="text-white/20 hover:text-[#2a6dc7] text-xs transition-colors duration-300 cursor-pointer"
                     >
                       {link.label}
                     </button>
@@ -78,7 +78,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-[#d4a054]/25 text-[9px] tracking-[0.35em] uppercase font-medium mb-5">
+              <h4 className="text-[#2a6dc7]/25 text-[9px] tracking-[0.35em] uppercase font-medium mb-5">
                 Follow
               </h4>
               <ul className="space-y-3">
@@ -87,7 +87,7 @@ export default function Footer() {
                     href="https://www.instagram.com/coreymcculloughmotorsport/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/20 hover:text-[#d4a054] text-xs transition-colors duration-300"
+                    className="text-white/20 hover:text-[#2a6dc7] text-xs transition-colors duration-300"
                   >
                     Instagram
                   </a>
@@ -96,7 +96,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-[#d4a054]/25 text-[9px] tracking-[0.35em] uppercase font-medium mb-5">
+              <h4 className="text-[#2a6dc7]/25 text-[9px] tracking-[0.35em] uppercase font-medium mb-5">
                 Business
               </h4>
               <ul className="space-y-3">
@@ -104,7 +104,7 @@ export default function Footer() {
                   <li key={item}>
                     <button
                       onClick={() => scrollTo("#contact")}
-                      className="text-white/20 hover:text-[#d4a054] text-xs transition-colors duration-300 cursor-pointer"
+                      className="text-white/20 hover:text-[#2a6dc7] text-xs transition-colors duration-300 cursor-pointer"
                     >
                       {item}
                     </button>
@@ -121,8 +121,8 @@ export default function Footer() {
             &copy; {currentYear} Corey McCullough Motorsport
           </p>
           <div className="flex items-center gap-2.5">
-            <span className="w-1.5 h-1.5 bg-[#d4a054] rounded-full animate-pulse" />
-            <span className="text-[#d4a054]/30 text-[9px] tracking-[0.25em] uppercase font-medium">
+            <span className="w-1.5 h-1.5 bg-[#2a6dc7] rounded-full animate-pulse" />
+            <span className="text-[#2a6dc7]/30 text-[9px] tracking-[0.25em] uppercase font-medium">
               Season Active
             </span>
           </div>

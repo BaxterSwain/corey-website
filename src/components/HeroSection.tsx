@@ -64,7 +64,7 @@ export default function HeroSection({
         className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse, rgba(212, 160, 84, 0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse, rgba(42, 109, 199, 0.04) 0%, transparent 70%)",
         }}
       />
 
@@ -73,12 +73,12 @@ export default function HeroSection({
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
           background:
-            "linear-gradient(135deg, transparent 45%, rgba(212, 160, 84, 0.5) 50%, transparent 55%)",
+            "linear-gradient(135deg, transparent 45%, rgba(42, 109, 199, 0.5) 50%, transparent 55%)",
         }}
       />
 
       {/* Left vertical accent */}
-      <div className="absolute left-8 sm:left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#d4a054]/15 to-transparent" />
+      <div className="absolute left-8 sm:left-12 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#2a6dc7]/15 to-transparent" />
 
       {/* Letterbox bars for cinematic feel */}
       <div className="letterbox-top" />
@@ -94,8 +94,8 @@ export default function HeroSection({
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-4 mb-12"
           >
-            <div className="w-8 h-px bg-[#d4a054]/60" />
-            <span className="text-[#d4a054]/70 font-medium text-[11px] tracking-[0.35em] uppercase">
+            <div className="w-8 h-px bg-[#2a6dc7]/60" />
+            <span className="text-[#2a6dc7]/70 font-medium text-[11px] tracking-[0.35em] uppercase">
               {badge}
             </span>
           </motion.div>
@@ -132,7 +132,7 @@ export default function HeroSection({
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-[#d4a054] hover:bg-[#e4b56a] text-[#030303] font-bold text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all duration-400 hover:shadow-[0_0_40px_rgba(212,160,84,0.25)]"
+              className="group relative bg-[#2a6dc7] hover:bg-[#3a7dd7] text-[#030303] font-bold text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all duration-400 hover:shadow-[0_0_40px_rgba(212,160,84,0.25)]"
             >
               <span className="flex items-center gap-3">
                 Follow the Journey
@@ -148,7 +148,7 @@ export default function HeroSection({
                   .querySelector("#highlights")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              className="border border-white/10 hover:border-[#d4a054]/40 text-white/40 hover:text-[#d4a054] font-medium text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all duration-400"
+              className="border border-white/10 hover:border-[#2a6dc7]/40 text-white/40 hover:text-[#2a6dc7] font-medium text-[11px] tracking-[0.2em] uppercase px-8 py-4 transition-all duration-400"
             >
               Watch Highlights
             </button>
@@ -162,7 +162,7 @@ export default function HeroSection({
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
         onClick={scrollToAbout}
-        className="absolute bottom-14 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 text-white/15 hover:text-[#d4a054]/50 transition-colors duration-500 group"
+        className="absolute bottom-14 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 text-white/15 hover:text-[#2a6dc7]/50 transition-colors duration-500 group"
         aria-label="Scroll down"
       >
         <span className="text-[9px] tracking-[0.4em] uppercase font-medium">

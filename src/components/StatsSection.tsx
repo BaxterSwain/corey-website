@@ -65,7 +65,7 @@ export default function StatsBanner({ stats }: { stats: StatItem[] }) {
       className="relative py-20 sm:py-28 bg-[#050505] overflow-hidden"
     >
       {/* Top gold line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4a054]/25 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2a6dc7]/25 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.03] to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -82,7 +82,7 @@ export default function StatsBanner({ stats }: { stats: StatItem[] }) {
               }}
               className="flex flex-col items-center text-center group"
             >
-              <div className="text-5xl sm:text-6xl lg:text-5xl xl:text-6xl font-black text-white leading-none mb-3 group-hover:text-[#d4a054] transition-colors duration-500">
+              <div className="text-5xl sm:text-6xl lg:text-5xl xl:text-6xl font-black text-white leading-none mb-3 group-hover:text-[#2a6dc7] transition-colors duration-500">
                 <CountUp
                   target={stat.value}
                   suffix={stat.suffix}

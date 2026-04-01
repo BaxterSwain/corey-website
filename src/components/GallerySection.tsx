@@ -56,7 +56,7 @@ function GalleryItem({
       {/* Hover overlay — cinematic dark with gold accent */}
       <div className="absolute inset-0 bg-[#030303]/0 group-hover:bg-[#030303]/75 flex flex-col items-start justify-end p-6 transition-all duration-400">
         <div className="opacity-0 group-hover:opacity-100 transition-all duration-400 translate-y-3 group-hover:translate-y-0">
-          <span className="text-[#d4a054] text-[8px] font-bold tracking-[0.25em] uppercase">
+          <span className="text-[#2a6dc7] text-[8px] font-bold tracking-[0.25em] uppercase">
             {photo.category}
           </span>
           <h4 className="text-white font-bold text-sm leading-tight mt-1.5">
@@ -66,7 +66,7 @@ function GalleryItem({
       </div>
 
       {/* Hover border — gold accent */}
-      <div className="absolute inset-0 border border-transparent group-hover:border-[#d4a054]/20 transition-all duration-400" />
+      <div className="absolute inset-0 border border-transparent group-hover:border-[#2a6dc7]/20 transition-all duration-400" />
     </motion.div>
   );
 }
@@ -110,8 +110,8 @@ export default function GallerySection({ photos }: { photos: Photo[] }) {
           className="mb-20"
         >
           <div className="flex items-center gap-4 mb-8">
-            <div className="w-8 h-px bg-[#d4a054]/60" />
-            <span className="text-[#d4a054]/60 font-medium text-[10px] tracking-[0.35em] uppercase">
+            <div className="w-8 h-px bg-[#2a6dc7]/60" />
+            <span className="text-[#2a6dc7]/60 font-medium text-[10px] tracking-[0.35em] uppercase">
               Gallery
             </span>
           </div>
@@ -153,14 +153,14 @@ export default function GallerySection({ photos }: { photos: Photo[] }) {
             onClick={() => setLightboxIndex(null)}
           >
             <button
-              className="absolute top-6 right-6 text-white/30 hover:text-[#d4a054] transition-colors z-10"
+              className="absolute top-6 right-6 text-white/30 hover:text-[#2a6dc7] transition-colors z-10"
               onClick={() => setLightboxIndex(null)}
             >
               <X size={28} />
             </button>
 
             <button
-              className="absolute left-4 sm:left-8 text-white/30 hover:text-[#d4a054] transition-colors z-10 p-2"
+              className="absolute left-4 sm:left-8 text-white/30 hover:text-[#2a6dc7] transition-colors z-10 p-2"
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIndex(
@@ -191,7 +191,7 @@ export default function GallerySection({ photos }: { photos: Photo[] }) {
                 />
               )}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                <span className="text-[#d4a054] text-[9px] font-bold tracking-[0.25em] uppercase">
+                <span className="text-[#2a6dc7] text-[9px] font-bold tracking-[0.25em] uppercase">
                   {currentPhoto.category}
                 </span>
                 <h4 className="text-white font-bold text-xl mt-1.5">
@@ -201,7 +201,7 @@ export default function GallerySection({ photos }: { photos: Photo[] }) {
             </motion.div>
 
             <button
-              className="absolute right-4 sm:right-8 text-white/30 hover:text-[#d4a054] transition-colors z-10 p-2"
+              className="absolute right-4 sm:right-8 text-white/30 hover:text-[#2a6dc7] transition-colors z-10 p-2"
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIndex((prev) => (prev! + 1) % photos.length);

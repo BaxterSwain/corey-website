@@ -3,10 +3,10 @@
 :root {
   --background: #030303;
   --foreground: #f5f5f0;
-  --accent: #d4a054;
-  --accent-hover: #e4b56a;
-  --accent-muted: #9a7139;
-  --accent-bright: #f0c878;
+  --accent: #2a6dc7;
+  --accent-hover: #3a7dd7;
+  --accent-muted: #1e5099;
+  --accent-bright: #5a9de7;
   --surface: #080808;
   --surface-2: #0e0e0e;
   --surface-3: #161616;
@@ -57,16 +57,16 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 160, 84, 0.3);
+  background: rgba(42, 109, 199, 0.3);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 160, 84, 0.6);
+  background: rgba(42, 109, 199, 0.6);
 }
 
 /* Accent gradient text — gold shimmer */
 .gradient-text {
-  background: linear-gradient(135deg, #d4a054 0%, #f0c878 50%, #d4a054 100%);
+  background: linear-gradient(135deg, #2a6dc7 0%, #5a9de7 50%, #2a6dc7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -106,14 +106,14 @@ body {
 /* Grid pattern overlay */
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(212, 160, 84, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212, 160, 84, 0.015) 1px, transparent 1px);
+    linear-gradient(rgba(42, 109, 199, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 109, 199, 0.015) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
 /* Glow effect — gold */
 .glow-accent {
-  box-shadow: 0 0 30px rgba(212, 160, 84, 0.2), 0 0 60px rgba(212, 160, 84, 0.08);
+  box-shadow: 0 0 30px rgba(42, 109, 199, 0.2), 0 0 60px rgba(42, 109, 199, 0.08);
 }
 
 /* Hover card lift */
@@ -122,7 +122,7 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 160, 84, 0.06);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(42, 109, 199, 0.06);
 }
 
 /* Smooth image zoom on hover */
@@ -144,7 +144,7 @@ body {
 /* Horizontal rule with gold accent */
 .hr-accent {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 160, 84, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(42, 109, 199, 0.3), transparent);
 }
 
 /* Cinematic letterbox bars */
@@ -167,6 +167,6 @@ body {
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 .drop-zone.drag-over {
-  border-color: #d4a054;
-  background-color: rgba(212, 160, 84, 0.05);
+  border-color: #2a6dc7;
+  background-color: rgba(42, 109, 199, 0.05);
 }
