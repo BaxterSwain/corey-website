@@ -5,10 +5,13 @@ import bcrypt from 'bcryptjs';
 let _supabase: SupabaseClient | null = null;
 function getSupabase(): SupabaseClient {
   if (!_supabase) {
-    _supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    console.log("Supabase init - URL defined:", !!url, "Key defined:", !!key);
+    if (!url || !key) {
+      throw new Error(`Missing Supabase env vars: URL=${!!url}, KEY=${!!key}`);
+    }
+    _supabase = createClient(url, key);
   }
   return _supabase;
 }
