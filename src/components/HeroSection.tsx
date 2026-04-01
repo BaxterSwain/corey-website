@@ -45,7 +45,7 @@ export default function HeroSection({
   return (
     <section
       id="hero"
-      className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-[#030303]"
+      className="relative h-screen flex flex-col items-center justify-center overflow-x-hidden overflow-y-hidden bg-[#030303]"
     >
       {/* Cinematic background layers */}
       <div className="absolute inset-0 grid-pattern opacity-30" />
@@ -105,7 +105,7 @@ export default function HeroSection({
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[18vw] sm:text-[14vw] md:text-[11vw] lg:text-[10vw] font-black leading-[0.82] tracking-[-0.04em]"
+            className="text-[18vw] sm:text-[14vw] md:text-[11vw] lg:text-[10vw] font-black leading-[0.85] tracking-[-0.04em] overflow-visible"
           >
             <span className="block text-white">{firstName}</span>
             <span className="block gradient-text">{lastName}</span>
