@@ -7,7 +7,10 @@ export async function GET(req: Request) {
     const section = searchParams.get("section");
 
     if (!section) {
-      return NextResponse.json({ error: "Missing section" }, { status: 400 });
+      // Return all sections when no specific section requested
+      const hero = await getContent("hero");
+      const about = await getContent("about");
+      return NextResponse.json({ hero, about });
     }
 
     const content = await getContent(section);
@@ -19,6 +22,18 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
+  try {
+    const { section, key, value } = await req.json();
+
+    await updateContent(section, key, value);
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    return NextResponse.json({ error: "Failed to update content" }, { status: 500 });
+  }
+}
+
+export async function PUT(req: Request) {
   try {
     const { section, key, value } = await req.json();
 
