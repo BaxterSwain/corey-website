@@ -239,11 +239,27 @@ export async function createContact(contact: any) {
   return data;
 }
 
-export async function getContacts() {
-  const { data, error } = await getSupabase()
+export async function getContacts(filters?: { query?: string; enquiryType?: string; sortBy?: string; order?: string }) {
+  let query = getSupabase()
     .from('contacts')
-    .select('*')
-    .order('createdAt', { ascending: false });
+    .select('*');
+
+  // Apply search query
+  if (filters?.query) {
+    query = query.or(`firstName.ilike.%${filters.query}%,lastName.ilike.%${filters.query}%,email.ilike.%${filters.query}%,message.ilike.%${filters.query}%`);
+  }
+
+  // Apply enquiry type filter
+  if (filters?.enquiryType) {
+    query = query.eq('enquiryType', filters.enquiryType);
+  }
+
+  // Apply sorting
+  const sortBy = filters?.sortBy || 'createdAt';
+  const order = (filters?.order || 'desc').toLowerCase() === 'desc';
+  query = query.order(sortBy, { ascending: !order });
+
+  const { data, error } = await query;
 
   if (error) throw error;
   return data;
