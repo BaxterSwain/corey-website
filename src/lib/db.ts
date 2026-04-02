@@ -44,6 +44,50 @@ export async function getUserByEmail(email: string) {
 }
 
 // =====================
+// CONTACT SETTINGS
+// =====================
+
+export async function getContactSettings() {
+  const { data, error } = await getSupabase()
+    .from('contact_settings')
+    .select('*')
+    .single();
+
+  if (error) {
+    // Return defaults if not found
+    return {
+      email: 'contact@coreymccullough.com',
+      phone: '',
+      instagram: '@coreymcculloughmotorsport',
+      location: ''
+    };
+  }
+  return data;
+}
+
+export async function updateContactSettings(settings: {
+  email: string;
+  phone?: string;
+  instagram?: string;
+  location?: string;
+}) {
+  const { data, error } = await getSupabase()
+    .from('contact_settings')
+    .upsert({
+      id: await getContactSettings().then(s => s.id || ''),
+      email: settings.email,
+      phone: settings.phone || '',
+      instagram: settings.instagram || '',
+      location: settings.location || '',
+    })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+// =====================
 // SITE CONTENT
 // =====================
 
