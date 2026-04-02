@@ -10,25 +10,36 @@ interface ContactMessage {
   enquiryType: string;
   message: string;
   createdAt: string;
+  read: boolean;
 }
 
 export default function AdminMessagesPage() {
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [query, setQuery] = useState('');
+  const [enquiryType, setEnquiryType] = useState('');
+  const [sortBy, setSortBy] = useState('createdAt');
+  const [order, setOrder] = useState('desc');
 
   useEffect(() => {
     async function fetch_() {
       try {
-        const res = await fetch('/api/contacts');
+        const params = new URLSearchParams();
+        if (query) params.set('q', query);
+        if (enquiryType) params.set('enquiryType', enquiryType);
+        if (sortBy) params.set('sortBy', sortBy);
+        if (order) params.set('order', order);
+
+        const res = await fetch(`/api/contacts?${params.toString()}`);
         const data = await res.json();
-        setMessages(Array.isArray(data) ? data : []);
+        setMessages(Array.isArray(data.contacts) ? data.contacts : []);
       } catch {} finally {
         setLoading(false);
       }
     }
     fetch_();
-  }, []);
+  }, [query, enquiryType, sortBy, order]);
 
   const formatDate = (dateStr: string) => {
     try {
@@ -43,6 +54,43 @@ export default function AdminMessagesPage() {
       <div className="mb-6">
         <h1 className="text-white text-xl font-bold">Messages</h1>
         <p className="text-white/25 text-xs mt-0.5">Contact form submissions ({messages.length})</p>
+      </div>
+
+      <div className="mb-4 grid grid-cols-1 md:grid-cols-4 gap-3">
+        <input
+          type="text"
+          placeholder="Search messages..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="bg-white/[0.02] border border-white/[0.06] text-sm text-white px-3 py-2 rounded-lg placeholder:text-white/20"
+        />
+        <select
+          value={enquiryType}
+          onChange={(e) => setEnquiryType(e.target.value)}
+          className="bg-white/[0.02] border border-white/[0.06] text-sm text-white px-3 py-2 rounded-lg"
+        >
+          <option value="">All types</option>
+          <option value="Sponsorship">Sponsorship</option>
+          <option value="Media">Media</option>
+          <option value="Racing">Racing</option>
+        </select>
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          className="bg-white/[0.02] border border-white/[0.06] text-sm text-white px-3 py-2 rounded-lg"
+        >
+          <option value="createdAt">Date</option>
+          <option value="firstName">Name</option>
+          <option value="email">Email</option>
+        </select>
+        <select
+          value={order}
+          onChange={(e) => setOrder(e.target.value)}
+          className="bg-white/[0.02] border border-white/[0.06] text-sm text-white px-3 py-2 rounded-lg"
+        >
+          <option value="desc">Newest first</option>
+          <option value="asc">Oldest first</option>
+        </select>
       </div>
 
       {messages.length === 0 ? (

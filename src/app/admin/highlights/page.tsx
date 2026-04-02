@@ -14,9 +14,10 @@ interface Highlight {
   badgeColor: string;
   gradient: string;
   featured: boolean;
+  gallery_id?: number;
 }
 
-const emptyForm = { title: '', subtitle: '', duration: '', views: '', videoUrl: '', badge: '', badgeColor: '', gradient: '', featured: false };
+const emptyForm = { title: '', subtitle: '', duration: '', views: '', videoUrl: '', badge: '', badgeColor: '', gradient: '', featured: false, galleryId: null as number | null };
 
 export default function AdminHighlightsPage() {
   const [highlights, setHighlights] = useState<Highlight[]>([]);
@@ -50,7 +51,7 @@ export default function AdminHighlightsPage() {
 
   const handleEdit = (h: Highlight) => {
     setEditing(h);
-    setForm({ title: h.title, subtitle: h.subtitle, duration: h.duration, views: h.views, videoUrl: h.videoUrl, badge: h.badge, badgeColor: h.badgeColor, gradient: h.gradient, featured: h.featured });
+    setForm({ title: h.title, subtitle: h.subtitle, duration: h.duration, views: h.views, videoUrl: h.videoUrl, badge: h.badge, badgeColor: h.badgeColor, gradient: h.gradient, featured: h.featured, galleryId: h.gallery_id || null });
   };
 
   const handleSave = async () => {
@@ -130,6 +131,19 @@ export default function AdminHighlightsPage() {
       <div className="bg-white/[0.02] border border-white/[0.06] p-5">
         <h2 className="text-white text-sm font-semibold mb-3">{editing ? 'Edit Highlight' : 'Add Highlight'}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="md:col-span-3">
+          <label className="block text-white/25 text-[10px] uppercase tracking-[0.15em] mb-1 font-medium">Gallery Image</label>
+          <select
+            value={form.galleryId || ''}
+            onChange={(e) => setForm({ ...form, galleryId: e.target.value ? Number(e.target.value) : null })}
+            className={`${ic} w-full`}
+          >
+            <option value="">No image</option>
+            {mediaFiles.filter(f => f.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)).map(file => (
+              <option key={file.url} value={file.url}>{file.name}</option>
+            ))}
+          </select>
+        </div>
           <div>
             <label className="block text-white/25 text-[10px] uppercase tracking-[0.15em] mb-1 font-medium">Title</label>
             <input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className={`${ic} w-full`} />
