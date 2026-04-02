@@ -87,86 +87,6 @@ export async function updateContactSettings(settings: {
   return data;
 }
 
-// =====================
-// SITE CONTENT
-// =====================
-
-export async function getSiteContent(section: string) {
-  const { data, error } = await getSupabase()
-    .from('site_content')
-    .select('key, value')
-    .eq('section', section);
-
-  if (error) throw error;
-
-  const result: Record<string, string> = {};
-  data.forEach((item) => {
-    result[item.key] = item.value;
-  });
-
-  return result;
-}
-
-export async function upsertSiteContent(section: string, key: string, value: string) {
-  const { error } = await getSupabase()
-    .from('site_content')
-    .upsert(
-      { section, key, value },
-      { onConflict: 'section,key' }
-    );
-
-  if (error) throw error;
-}
-
-// =====================
-// CONTACT SETTINGS
-// =====================
-
-export async function getContactSettings() {
-  const { data, error } = await getSupabase()
-    .from('contact_settings')
-    .select('*')
-    .single();
-
-  if (error) {
-    // Return defaults if not found
-    return {
-      id: '',
-      email: 'contact@coreymccullough.com',
-      phone: '',
-      instagram: '@coreymcculloughmotorsport',
-      location: ''
-    };
-  }
-  return data;
-}
-
-export async function updateContactSettings(settings: {
-  email: string;
-  phone?: string;
-  instagram?: string;
-  location?: string;
-}) {
-  const { data, error } = await getSupabase()
-    .from('contact_settings')
-    .upsert({
-      id: '1', // Single row
-      email: settings.email,
-      phone: settings.phone || '',
-      instagram: settings.instagram || '',
-      location: settings.location || '',
-    }, { onConflict: 'id' })
-    .select()
-    .single();
-
-  if (error) throw error;
-  return data;
-}
-
-// =====================
-// SITE SETTINGS
-// =====================
-
 export async function getSiteSettings() {
   const { data, error } = await getSupabase()
     .from('site_settings')
@@ -207,6 +127,38 @@ export async function updateSiteSettings(settings: {
   if (error) throw error;
   return data;
 }
+
+// =====================
+// SITE CONTENT
+// =====================
+
+export async function getSiteContent(section: string) {
+  const { data, error } = await getSupabase()
+    .from('site_content')
+    .select('key, value')
+    .eq('section', section);
+
+  if (error) throw error;
+
+  const result: Record<string, string> = {};
+  data.forEach((item) => {
+    result[item.key] = item.value;
+  });
+
+  return result;
+}
+
+export async function upsertSiteContent(section: string, key: string, value: string) {
+  const { error } = await getSupabase()
+    .from('site_content')
+    .upsert(
+      { section, key, value },
+      { onConflict: 'section,key' }
+    );
+
+  if (error) throw error;
+}
+
 
 // =====================
 // STATS

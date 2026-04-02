@@ -61,6 +61,12 @@ export async function getAuthUser() {
   return verifyJWT(token);
 }
 
+export async function getSession(request?: NextRequest) {
+  const user = await requireAuth(request);
+  if (!user) return null;
+  return { user };
+}
+
 export async function requireAuth(request?: NextRequest) {
   if (request) {
     const token = request.cookies.get(COOKIE_NAME)?.value;
