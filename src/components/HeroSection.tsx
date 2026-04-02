@@ -132,7 +132,7 @@ export default function HeroSection({
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[18vw] sm:text-[14vw] md:text-[11vw] lg:text-[10vw] font-black leading-tight tracking-[-0.04em] overflow-visible"
+            className="text-[16vw] sm:text-[12vw] md:text-[9vw] lg:text-[8vw] font-black leading-tight tracking-[-0.04em] overflow-visible"
           >
             <span className="block text-white">{firstName}</span>
             <span className="block gradient-text">{lastName}</span>
