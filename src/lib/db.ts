@@ -341,7 +341,7 @@ export async function getContacts(filters?: { query?: string; enquiryType?: stri
   }
 
   // Apply sorting
-  const sortBy = filters?.sortBy || 'createdAt';
+  const sortBy = (filters?.sortBy || 'createdat').toLowerCase(); // PostgreSQL columns are lowercase
   const order = (filters?.order || 'desc').toLowerCase() === 'desc';
   query = query.order(sortBy, { ascending: !order });
 

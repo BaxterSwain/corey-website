@@ -19,7 +19,7 @@ export default function AdminMessagesPage() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [query, setQuery] = useState('');
   const [enquiryType, setEnquiryType] = useState('');
-  const [sortBy, setSortBy] = useState('createdAt');
+  const [sortBy, setSortBy] = useState('createdat'); // PostgreSQL columns are lowercase
   const [order, setOrder] = useState('desc');
 
   useEffect(() => {
@@ -76,11 +76,11 @@ export default function AdminMessagesPage() {
         </select>
         <select
           value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
+          onChange={(e) => setSortBy(e.target.value.toLowerCase())}
           className="bg-white/[0.02] border border-white/[0.06] text-sm text-white px-3 py-2 rounded-lg"
         >
-          <option value="createdAt">Date</option>
-          <option value="firstName">Name</option>
+          <option value="createdat">Date</option>
+          <option value="firstname">Name</option>
           <option value="email">Email</option>
         </select>
         <select

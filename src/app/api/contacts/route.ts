@@ -5,7 +5,7 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get('q') || '';
   const enquiryType = searchParams.get('enquiryType') || '';
-  const sortBy = searchParams.get('sortBy') || 'createdAt';
+  const sortBy = (searchParams.get('sortBy') || 'createdat').toLowerCase(); // PostgreSQL columns are lowercase
   const order = searchParams.get('order') || 'desc';
 
   const contacts = await getContacts({ query, enquiryType, sortBy, order });
