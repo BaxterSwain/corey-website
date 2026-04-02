@@ -70,6 +70,8 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: block;
+  line-height: 1.1;
 }
 
 /* Section reveal animation (fallback for non-framer) */

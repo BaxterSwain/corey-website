@@ -20,22 +20,49 @@ export default function HeroSection({
   instagramUrl,
 }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const handleScroll = () => {
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const updateAnimation = () => {
       const scrollY = window.scrollY;
-      const opacity = Math.max(0, 1 - scrollY / 700);
-      const translateY = scrollY * 0.25;
-      const scale = 1 + scrollY * 0.0002;
+      const lastScrollY = lastScrollYRef.current;
+
+      // Smooth the scroll values with easing
+      const progress = Math.min(scrollY / 700, 1);
+      const easedProgress = easeOutCubic(progress);
+
+      const opacity = Math.max(0, 1 - easedProgress);
+      const translateY = scrollY * 0.25 * easedProgress;
+      const scale = 1 + (scrollY * 0.0002 * easedProgress);
+
       container.style.opacity = String(opacity);
       container.style.transform = `translateY(${translateY}px) scale(${scale})`;
+
+      lastScrollYRef.current = scrollY;
+      animationFrameRef.current = null;
+    };
+
+    const handleScroll = () => {
+      if (animationFrameRef.current === null) {
+        animationFrameRef.current = window.requestAnimationFrame(updateAnimation);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll(); // Initial call
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, []);
 
   const scrollToAbout = () => {
@@ -105,7 +132,7 @@ export default function HeroSection({
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[18vw] sm:text-[14vw] md:text-[11vw] lg:text-[10vw] font-black leading-[0.85] tracking-[-0.04em] overflow-visible"
+            className="text-[18vw] sm:text-[14vw] md:text-[11vw] lg:text-[10vw] font-black leading-tight tracking-[-0.04em] overflow-visible"
           >
             <span className="block text-white">{firstName}</span>
             <span className="block gradient-text">{lastName}</span>

@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const navItems = [
   { label: 'Dashboard', href: '/admin', icon: 'D' },
@@ -16,6 +18,7 @@ const navItems = [
 export default function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (href: string) => {
     if (href === '/admin') return pathname === '/admin';
@@ -28,19 +31,32 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-56 bg-[#0a0a0a] border-r border-white/[0.06] flex flex-col z-50">
-      {/* Brand */}
-      <div className="px-5 py-5 border-b border-white/[0.06]">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 bg-[#dc2626] flex items-center justify-center">
-            <span className="text-white font-bold text-[10px]">CM</span>
-          </div>
-          <div>
-            <p className="text-white font-semibold text-xs">Admin</p>
-            <p className="text-white/25 text-[10px]">Corey Motorsport</p>
+    <>
+      {/* Mobile menu toggle */}
+      <button
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="lg:hidden fixed top-4 left-4 z-[60] p-2 bg-[#0a0a0a] border border-white/[0.06] hover:bg-[#0a0a0a]/90 transition-colors"
+        aria-label="Toggle menu"
+      >
+        {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      {/* Sidebar */}
+      <aside className={`fixed left-0 top-0 h-screen w-56 bg-[#0a0a0a] border-r border-white/[0.06] flex flex-col z-50 transform transition-transform duration-300 lg:translate-x-0 ${
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}>
+        {/* Brand */}
+        <div className="px-5 py-5 border-b border-white/[0.06]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 bg-[#dc2626] flex items-center justify-center">
+              <span className="text-white font-bold text-[10px]">CM</span>
+            </div>
+            <div>
+              <p className="text-white font-semibold text-xs">Admin</p>
+              <p className="text-white/25 text-[10px]">Corey Motorsport</p>
+            </div>
           </div>
         </div>
-      </div>
 
       {/* Navigation */}
       <nav className="flex-1 py-3 px-2.5 space-y-0.5 overflow-y-auto">
