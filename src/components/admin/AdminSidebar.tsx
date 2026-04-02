@@ -99,5 +99,6 @@ export default function AdminSidebar() {
         </button>
       </div>
     </aside>
-  );
+  </>
+);
 }
