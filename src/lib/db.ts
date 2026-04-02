@@ -128,7 +128,7 @@ export async function deleteStat(id: number) {
 export async function getHighlights() {
   const { data, error } = await getSupabase()
     .from('highlights')
-    .select('*')
+    .select(`*, gallery (*)`)
     .order('order', { ascending: true });
 
   if (error) throw error;
