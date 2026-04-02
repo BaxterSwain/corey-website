@@ -75,6 +75,96 @@ export async function upsertSiteContent(section: string, key: string, value: str
 }
 
 // =====================
+// CONTACT SETTINGS
+// =====================
+
+export async function getContactSettings() {
+  const { data, error } = await getSupabase()
+    .from('contact_settings')
+    .select('*')
+    .single();
+
+  if (error) {
+    // Return defaults if not found
+    return {
+      id: '',
+      email: 'contact@coreymccullough.com',
+      phone: '',
+      instagram: '@coreymcculloughmotorsport',
+      location: ''
+    };
+  }
+  return data;
+}
+
+export async function updateContactSettings(settings: {
+  email: string;
+  phone?: string;
+  instagram?: string;
+  location?: string;
+}) {
+  const { data, error } = await getSupabase()
+    .from('contact_settings')
+    .upsert({
+      id: '1', // Single row
+      email: settings.email,
+      phone: settings.phone || '',
+      instagram: settings.instagram || '',
+      location: settings.location || '',
+    }, { onConflict: 'id' })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+// =====================
+// SITE SETTINGS
+// =====================
+
+export async function getSiteSettings() {
+  const { data, error } = await getSupabase()
+    .from('site_settings')
+    .select('*')
+    .single();
+
+  if (error) {
+    // Return defaults
+    return {
+      id: '1',
+      site_title: 'Corey McCullough | Motorsport Racer',
+      meta_description: 'Official website of Corey McCullough - professional motorsport racer pushing the limits of speed, precision, and performance.',
+      favicon_url: '/favicon.ico',
+      theme_primary_color: '#2a6dc7'
+    };
+  }
+  return data;
+}
+
+export async function updateSiteSettings(settings: {
+  site_title?: string;
+  meta_description?: string;
+  favicon_url?: string;
+  theme_primary_color?: string;
+}) {
+  const { data, error } = await getSupabase()
+    .from('site_settings')
+    .upsert({
+      id: '1',
+      site_title: settings?.site_title,
+      meta_description: settings?.meta_description,
+      favicon_url: settings?.favicon_url,
+      theme_primary_color: settings?.theme_primary_color,
+    }, { onConflict: 'id' })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+// =====================
 // STATS
 // =====================
 
