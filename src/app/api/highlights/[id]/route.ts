@@ -10,7 +10,10 @@ export async function GET(_: Request, { params }: { params: Promise<{ id: string
 export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const data = await req.json();
-  const updated = await updateHighlight(Number(id), data);
+  const updated = await updateHighlight(Number(id), {
+    ...data,
+    gallery_id: data.galleryId || null,
+  });
   return NextResponse.json(updated);
 }
 

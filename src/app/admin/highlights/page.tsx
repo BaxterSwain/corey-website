@@ -58,7 +58,7 @@ export default function AdminHighlightsPage() {
     if (!form.title) return;
     try {
       if (editing) {
-        await fetch(`/api/highlights/${editing.id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+        await fetch(`/api/highlights/${editing.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
         flash('Updated');
       } else {
         await fetch('/api/highlights', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
