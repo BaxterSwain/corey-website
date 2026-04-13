@@ -34,13 +34,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Failed to create highlight" }, { status: 500 });
   }
 }
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession(req);
   if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
     const body = await req.json();
-    const item = await updateHighlight(Number(params.id), {
+    const item = await updateHighlight(Number((await params).id), {
       ...body,
       gallery_id: body.galleryId || null,
     });
