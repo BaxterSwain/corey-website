@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Play, Clock, Eye } from "lucide-react";
+import { Play, Clock, Eye, Maximize2 } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 
 interface Highlight {
@@ -18,6 +18,41 @@ interface Highlight {
   order: number;
 }
 
+// Helper to detect if URL is Vimeo/YouTube
+function isEmbedUrl(url: string): boolean {
+  return url.includes('vimeo.com') || url.includes('youtube.com') || url.includes('youtu.be');
+}
+
+// Convert Vimeo watch URL to player URL
+function getVimeoEmbedUrl(url: string): string {
+  if (url.includes('player.vimeo.com')) return url;
+  if (url.includes('vimeo.com/')) {
+    const match = url.match(/vimeo\.com\/(\d+)/);
+    if (match) return `https://player.vimeo.com/video/${match[1]}`;
+  }
+  return url;
+}
+
+function VideoEmbed({ url, className, controls = true }: { url: string; className?: string; controls?: boolean }) {
+  if (!url) return null;
+
+  // Use iframe for Vimeo/YouTube, video tag for direct video files
+  if (isEmbedUrl(url)) {
+    const embedUrl = url.includes('vimeo.com') ? getVimeoEmbedUrl(url) : url;
+    return (
+      <iframe
+        src={embedUrl}
+        className={className}
+        allowFullScreen
+        allow="autoplay; encrypted-media"
+      />
+    );
+  }
+
+  // Direct video file
+  return <video src={url} className={className} playsInline controls={controls} muted={!controls} />;
+}
+
 function VideoCard({
   video,
   index,
@@ -28,7 +63,6 @@ function VideoCard({
   onOpen: () => void;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.1 });
   const [hovered, setHovered] = useState(false);
 
@@ -48,40 +82,44 @@ function VideoCard({
     >
       {/* Video */}
       <div className="relative overflow-hidden aspect-video bg-[#080808] mb-5">
-        <video
-          ref={videoRef}
-          src={video.videoUrl}
-          className="w-full h-full object-cover"
-          preload="metadata"
-          muted
-          playsInline
-        />
+        <VideoEmbed url={video.videoUrl} className="w-full h-full object-cover" controls={false} />
 
         {/* Overlay */}
         <div className="absolute inset-0 pointer-events-none bg-[#030303]/0 group-hover:bg-[#030303]/30 transition-all duration-500" />
 
-        {/* Play button */}
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-400 ${
-            hovered ? "opacity-100 scale-100" : "opacity-50 scale-90"
-          }`}
-          onClick={() => {
-            if (!videoRef.current) return;
-
-            if (videoRef.current.paused) {
-              videoRef.current.play();
-            } else {
-              videoRef.current.pause();
-            }
-          }}
-        >
-          <div className="w-14 h-14 border border-white/15 flex items-center justify-center group-hover:bg-[#2a6dc7] group-hover:border-[#2a6dc7] transition-all duration-400">
-            <Play
-              size={18}
-              className="text-white fill-white ml-0.5"
-              strokeWidth={0}
-            />
+        {/* Play button + View Fullscreen button */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+          <div
+            className={`flex items-center justify-center transition-all duration-400 ${
+              hovered ? "opacity-100 scale-100" : "opacity-50 scale-90"
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpen();
+            }}
+          >
+            <div className="w-14 h-14 border border-white/15 flex items-center justify-center group-hover:bg-[#2a6dc7] group-hover:border-[#2a6dc7] transition-all duration-400 cursor-pointer">
+              <Play
+                size={18}
+                className="text-white fill-white ml-0.5"
+                strokeWidth={0}
+              />
+            </div>
           </div>
+
+          {/* View Fullscreen button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpen();
+            }}
+            className={`text-white text-xs px-3 py-1.5 rounded transition-all duration-300 bg-black/50 hover:bg-[#2a6dc7] z-10 ${
+              hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            } flex items-center gap-1.5`}
+          >
+            <Maximize2 size={12} />
+            View Fullscreen
+          </button>
         </div>
 
         {/* Badge */}
@@ -99,11 +137,8 @@ function VideoCard({
         </div>
       </div>
 
-      {/* TEXT (click opens modal) */}
-      <h3
-        onClick={onOpen}
-        className="cursor-pointer text-white font-bold text-sm leading-tight mb-1.5 group-hover:text-[#2a6dc7] transition-colors duration-300 line-clamp-2"
-      >
+      {/* TEXT */}
+      <h3 className="cursor-pointer text-white font-bold text-sm leading-tight mb-1.5 group-hover:text-[#2a6dc7] transition-colors duration-300 line-clamp-2">
         {video.title}
       </h3>
 
@@ -177,11 +212,10 @@ export default function HighlightsSection({
             className="relative w-full max-w-4xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <video
-              src={activeVideo.videoUrl}
+            <VideoEmbed
+              url={activeVideo.videoUrl}
               className="w-full rounded-lg"
-              controls
-              autoPlay
+              controls={true}
             />
 
             <button
