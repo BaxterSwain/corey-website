@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import { getHighlights, createHighlight } from "@/lib/db";
+import { getHighlights, createHighlight, updateHighlight, deleteHighlight } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 
 export async function GET() {
