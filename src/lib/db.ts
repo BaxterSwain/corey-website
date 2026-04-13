@@ -279,13 +279,22 @@ export async function getGallery() {
 }
 
 export async function createGalleryItem(item: any) {
+  // Ensure order field has a default value
+  const itemWithDefaults = {
+    ...item,
+    order: item.order || 0
+  };
+
   const { data, error } = await getSupabase()
     .from('gallery')
-    .insert(item)
+    .insert(itemWithDefaults)
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) {
+    console.error('Supabase gallery insert error:', error);
+    throw error;
+  }
   return data;
 }
 
