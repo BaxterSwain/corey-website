@@ -91,7 +91,7 @@ function VideoCard({
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
           <div
             className={`flex items-center justify-center transition-all duration-400 ${
-              hovered ? "opacity-100 scale-100" : "opacity-50 scale-90"
+              hovered ? "opacity-100 scale-100" : "opacity-0 scale-90"
             }`}
             onClick={(e) => {
               e.stopPropagation();
